@@ -1,0 +1,40 @@
+{
+  "name": "imageresizer",
+  "version": "1.0.0",
+  "description": "An express app intended to perform common operations on images.",
+  "main": "app.js",
+  "directories": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
+    "test": "tests"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/matanos5/imageResizer.git"
+  },
+  "keywords": [
+    "image",
+    "resize",
+    "cropper",
+    "thumbnail"
+  ],
+  "author": "Matan Zion",
+  "license": "GPL-3.0+",
+  "bugs": {
+    "url": "https://github.com/matanos5/imageResizer/issues"
+  },
+  "homepage": "https://github.com/matanos5/imageResizer#readme"
+}
