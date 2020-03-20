@@ -4,21 +4,28 @@
   "description": "An express app intended to perform common operations on images.",
   "main": "app.js",
   "directories": {
-    "start": "node ./app.js",
-    "dev": "nodemon ./app.js",
     "test": "tests"
   },
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "axios": "^0.19.2",
     "body-parser": "^1.19.0",
+    "compression": "^1.7.4",
     "errorhandler": "^1.5.1",
     "express": "^4.17.1",
-    "nodemon": "^2.0.2"
+    "express-validator": "^6.4.0",
+    "file-type": "^14.1.3",
+    "is-url": "^1.2.4",
+    "nodemon": "^2.0.2",
+    "sharp": "^0.24.1"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.14.0"
   },
   "scripts": {
+    "start": "node ./app.js",
+    "dev": "nodemon ./app.js",
     "test": "jest"
   },
   "repository": {
