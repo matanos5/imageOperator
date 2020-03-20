@@ -9,21 +9,21 @@ const resizeRequestSchema = require('../../models/resizeRequestSchema');
 
 
 const handleResize = async (req, res) => {
-  const requestQueryParams = resizeRequestSchema.validate(req.query);
-  if (requestQueryParams.error) {
+  const validationResult = resizeRequestSchema.validate(req.query);
+  if (validationResult.error) {
     return res
         .status(422)
-        .json(requestQueryParams.error.message);
+        .json(validationResult.error.message);
   }
   try {
     if (isUrl(req.body)) {
-      const resizedImage = await handleUrl(req, requestQueryParams);
+      const resizedImage = await handleUrl(req, validationResult.value);
       return res
           .status(200)
           .send(resizedImage);
     } else if
     (await checkIfInputIsImage(req.body)) {
-      const resizedImage = await resizeImage(req.body, requestQueryParams);
+      const resizedImage = await resizeImage(req.body, validationResult.value);
       return res
           .status(200)
           .send(resizedImage);
@@ -38,7 +38,7 @@ const handleResize = async (req, res) => {
 
 const handleUrl = async (req, requestQueryParams) => {
   const imageReq = await axios.get(req.body, {responseType: 'arraybuffer'});
-  return resizeImage(imageReq.data, requestQueryParams);
+  return resizeImage(Buffer.from(new Uint8Array(imageReq.data)), requestQueryParams);
 };
 
 
