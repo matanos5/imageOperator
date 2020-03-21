@@ -11,6 +11,7 @@ GOOGLE_LOGO_URL = 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Goo
 describe('Testing resize endpoint', () => {
   const responseSample = fs.
       readFileSync('tests/data/resize/response_sample.png');
+
   test('Testing with image url', async () => {
     const response = await request(app)
         .post('/api/resize')
@@ -20,6 +21,7 @@ describe('Testing resize endpoint', () => {
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual(responseSample);
   });
+
   test('Testing with image file', async () => {
     const response = await request(app)
         .post('/api/resize')
@@ -31,6 +33,7 @@ describe('Testing resize endpoint', () => {
     expect(response.body).toEqual(responseSample)
     ;
   });
+
   test('Testing failure with invalid data', async () => {
     const response = await request(app)
         .post('/api/resize')
@@ -39,6 +42,7 @@ describe('Testing resize endpoint', () => {
     expect(response.statusCode).toBe(422);
     ;
   });
+
   test('Testing failure with invalid url', async () => {
     const response = await request(app)
         .post('/api/resize')
@@ -47,6 +51,7 @@ describe('Testing resize endpoint', () => {
     expect(response.statusCode).toBe(422);
     ;
   });
+
   test('Testing failure with invalid image file', async () => {
     const response = await request(app)
         .post('/api/resize')
