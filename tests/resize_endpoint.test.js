@@ -47,5 +47,15 @@ describe('Testing resize endpoint', () => {
     expect(response.statusCode).toBe(422);
     ;
   });
+  test('Testing failure with invalid image file', async () => {
+    const response = await request(app)
+        .post('/api/resize')
+        .query({'width': 300})
+        .set('Content-Type', 'image/png')
+        .send(fs
+            .readFileSync('tests/data/resize/invalid_file.png'));
+    expect(response.statusCode).toBe(422);
+    ;
+  });
 });
 

@@ -38,7 +38,9 @@ const handleResize = async (req, res) => {
 
 const handleUrl = async (req, requestQueryParams) => {
   const imageReq = await axios.get(req.body, {responseType: 'arraybuffer'});
-  return resizeImage(Buffer.from(new Uint8Array(imageReq.data)), requestQueryParams);
+  return resizeImage(Buffer.from(
+      new Uint8Array(imageReq.data)),
+  requestQueryParams);
 };
 
 
