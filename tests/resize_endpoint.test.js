@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 const request = require('supertest');
 const app = require('../app');
 const fs = require('fs');
@@ -25,6 +29,22 @@ describe('Testing resize endpoint', () => {
             .readFileSync('tests/data/resize/request_sample.png'));
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual(responseSample)
+    ;
+  });
+  test('Testing failure with invalid data', async () => {
+    const response = await request(app)
+        .post('/api/resize')
+        .set('Content-Type', 'text/plain')
+        .send('Just some invalid data');
+    expect(response.statusCode).toBe(422);
+    ;
+  });
+  test('Testing failure with invalid url', async () => {
+    const response = await request(app)
+        .post('/api/resize')
+        .set('Content-Type', 'text/plain')
+        .send('http://google.com/blablabla');
+    expect(response.statusCode).toBe(422);
     ;
   });
 });
