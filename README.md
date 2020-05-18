@@ -2,6 +2,8 @@
 
 ## Description
 
+This is a tiny service with one route only. The route accepts either an image URL in the body or an image binary resizes it to your choice and rotates it based on the exif info.
+
 This service was created using Express and Sharp as Sharp has great performance in image manipulation.
 
 ## Installation
