@@ -18,7 +18,10 @@
     "is-url": "^1.2.4",
     "nodemon": "^2.0.2",
     "sharp": "^0.24.1",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "ts-jest": "^25.4.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.8.3"
   },
   "devDependencies": {
     "eslint": "^6.8.0",
@@ -27,8 +30,8 @@
     "jest-cli": "^25.1.0"
   },
   "scripts": {
-    "start": "node ./server.js",
-    "dev": "nodemon ./server.js",
+    "start": "ts-node ./server.ts",
+    "dev": "ts-node ./server.ts",
     "test": "jest",
     "test:watch": "jest --watch"
   },

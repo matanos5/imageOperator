@@ -1,9 +1,10 @@
 // eslint-disable-next-line new-cap
-const router = require('express').Router();
+import { Router, Request, Response } from 'express';
 
+const router = Router();
 
-const health = async (req, res) => {
-  return res.status(200).json({'status': 'Everything up and running'});
+const health = async (req: Request, res: Response): Promise<Response> => {
+  return res.status(200).json({ status: 'OK' });
 };
 router.get('/', health);
 
