@@ -8,10 +8,9 @@ import { fromBuffer } from 'file-type';
 import { Router, Request, Response } from 'express';
 import resizeRequestSchema from "../../models/resizeRequestSchema"
 
-
 const router = Router()
 
-const handleResize = async (req: Request, res: Response): Promise<Response<any>> => {
+const handleResize = async (req: Request, res: Response): Promise<Response<any> | undefined> => {
   const validationResult = resizeRequestSchema.validate(req['query']);
   if (validationResult.error) {
     return res
@@ -39,7 +38,7 @@ const handleResize = async (req: Request, res: Response): Promise<Response<any>>
 };
 
 
-const handleUrl = async (req: Request, requestQueryParams: Object): Promise<Buffer> => {
+const handleUrl = async (req: Request, requestQueryParams: any): Promise<Buffer> => {
   const imageReq = await axios.get(req.body, { responseType: 'arraybuffer' });
   return resizeImage(Buffer.from(
     new Uint8Array(imageReq.data)),
@@ -47,12 +46,12 @@ const handleUrl = async (req: Request, requestQueryParams: Object): Promise<Buff
 };
 
 
-const checkIfInputIsImage = async (buffer: Buffer): Promise<Boolean> => {
+const checkIfInputIsImage = async (buffer: Buffer): Promise<boolean | undefined> => {
   const fileType = await fromBuffer(buffer);
-  return fileType.mime.includes('image');
+  return fileType?.mime.includes('image')
 };
 
-const resizeImage = (buffer: Buffer, requestQueryParams: Object): Promise<Buffer> => {
+const resizeImage = (buffer: Buffer, requestQueryParams: any): Promise<Buffer> => {
   return Sharp(buffer)
     .resize(requestQueryParams['width'] || null,
       requestQueryParams['height'] || null)
